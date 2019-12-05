@@ -1,5 +1,6 @@
 package co.edu.udistrital.informatica.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,10 @@ import ucar.netcdf.VariableIterator;
 @Service
 public class FileReader implements IFileReader {
 	
-	private String filePath = "src/main/resources/outN.netcdf";
+	private String filePath = "outN.netcdf";
 
 	public List<String[]> readNetCDF() throws IOException {
-		ArchivoNetcdf nc = new ArchivoNetcdf(filePath);
+		ArchivoNetcdf nc = new ArchivoNetcdf(System.getProperty("user.dir")+File.separator+filePath);
 		VariableIterator vi = nc.getFile().iterator();
 		List<String[]> variables = new ArrayList<String[]>();
 		while (vi.hasNext()) {
